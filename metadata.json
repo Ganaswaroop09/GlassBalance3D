@@ -1,0 +1,6 @@
+{
+  "name": "Glass Balance 3D",
+  "description": "Realistic 3D physics-based glass balancing game. Keep the glass platform steady, balance spheres and objects, and prevent fragile glass from cracking and shattering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
