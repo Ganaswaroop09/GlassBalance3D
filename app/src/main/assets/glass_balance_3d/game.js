@@ -1351,23 +1351,21 @@
       glassTexture.wrapT = THREE.RepeatWrapping;
 
       // Pure Red Glass Platform Material
-      const glassMat = new THREE.MeshPhysicalMaterial({
+      // MeshStandardMaterial instead of MeshPhysicalMaterial: the physical clearcoat/specular
+      // shader fails or washes out on many mobile GPUs running at mediump precision, which
+      // left the deck looking like colourless glass on phones while laptops showed red.
+      const glassMat = new THREE.MeshStandardMaterial({
         color: 0xFF0000,             // Pure Red ("#FF0000", RGB 255, 0, 0)
         emissive: 0xFF0000,          // Keeps the glass reading as true red through sky reflections
         emissiveIntensity: 0.9,
         map: glassTexture,           // Shows crystal depth and panel seams
         emissiveMap: glassTexture,   // Keeps seams/bevels visible in the emissive red too
-        transmission: 0.0,           // Transmission samples the white sky and bleaches the deck pink
         transparent: true,
         opacity: 0.88,
-        roughness: 0.05,             // Glossy crystal surface
+        roughness: 0.08,             // Glossy crystal surface
         metalness: 0.0,
-        ior: 1.5,
-        specularIntensity: 0.35,     // Fresnel at the low camera angle otherwise mirrors the sky to white
-        specularColor: 0xFF6060,
-        clearcoat: 0.35,             // Gloss kept, but no longer a full white sky mirror
-        clearcoatRoughness: 0.05,
         envMapIntensity: 0.3,        // Sky reflections subdued so red stays dominant at grazing angles
+        side: THREE.DoubleSide,      // Visible from any camera angle on every device
         depthWrite: true,
         depthTest: true
       });
