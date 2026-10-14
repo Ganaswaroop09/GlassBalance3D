@@ -1308,11 +1308,13 @@
 
       // Lateral ruby-crimson gradient
       const gGrad = gCtx.createLinearGradient(0, 0, 512, 0);
-      gGrad.addColorStop(0.00, '#991B1B'); // Crimson red lateral bevel edge
-      gGrad.addColorStop(0.06, '#DC2626'); // Vibrant ruby red
-      gGrad.addColorStop(0.50, '#EF4444'); // Luminous scarlet center
-      gGrad.addColorStop(0.94, '#DC2626'); // Vibrant ruby red
-      gGrad.addColorStop(1.00, '#991B1B'); // Crimson red lateral bevel edge
+      // Neutral luminance gradient: the map multiplies the material colour, so a white
+      // centre lets the true #FF0000 show while the grey edges keep the bevel shading.
+      gGrad.addColorStop(0.00, '#A0A0A0'); // Shaded lateral bevel edge
+      gGrad.addColorStop(0.06, '#E6E6E6');
+      gGrad.addColorStop(0.50, '#FFFFFF'); // Full-strength pure red centre
+      gGrad.addColorStop(0.94, '#E6E6E6');
+      gGrad.addColorStop(1.00, '#A0A0A0'); // Shaded lateral bevel edge
       gCtx.fillStyle = gGrad;
       gCtx.fillRect(0, 0, 512, 512);
 
@@ -1351,7 +1353,7 @@
       // Pure Red Glass Platform Material
       const glassMat = new THREE.MeshPhysicalMaterial({
         color: 0xFF0000,             // Pure Red ("#FF0000", RGB 255, 0, 0)
-        emissive: 0x48080C,          // Subtle deep red internal glass warmth
+        emissive: 0x480000,          // Subtle deep red internal glass warmth
         emissiveIntensity: 0.16,
         map: glassTexture,           // Shows crystal depth and panel seams
         transmission: 0.52,          // Visibly glass-like with semi-transparency (light visibly passes through)
@@ -1370,8 +1372,8 @@
 
       // Brighter luminous red edge runners framing the platform shape
       const railMat = new THREE.MeshStandardMaterial({
-        color: 0xFF1E42,             // Bright red edge highlight
-        emissive: 0xFF2250,          // Radiant red border illumination
+        color: 0xFF0000,             // Pure red edge highlight
+        emissive: 0xFF0000,          // Radiant red border illumination
         emissiveIntensity: 1.25,
         roughness: 0.06,
         metalness: 0.85,
