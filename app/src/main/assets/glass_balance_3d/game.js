@@ -1354,18 +1354,18 @@
       const glassMat = new THREE.MeshPhysicalMaterial({
         color: 0xFF0000,             // Pure Red ("#FF0000", RGB 255, 0, 0)
         emissive: 0xFF0000,          // Keeps the glass reading as true red through sky reflections
-        emissiveIntensity: 0.35,
+        emissiveIntensity: 0.6,
         map: glassTexture,           // Shows crystal depth and panel seams
-        transmission: 0.52,          // Visibly glass-like with semi-transparency (light visibly passes through)
+        transmission: 0.2,           // Kept low so the bright sky behind doesn't bleach the red to pink
         transparent: true,
-        opacity: 0.95,
+        opacity: 0.92,
         roughness: 0.035,            // Ultra-glossy, pristine crystal surface
         metalness: 0.06,
         ior: 1.58,                   // High refractive index for realistic glass optics
-        reflectivity: 0.96,          // Crisp reflections of sunlight and sky
+        reflectivity: 0.5,           // Reflections stay visible without washing out the red
         clearcoat: 1.0,              // High glossy clearcoat
         clearcoatRoughness: 0.025,
-        envMapIntensity: 1.4,        // High-altitude sky reflections on the glass
+        envMapIntensity: 0.6,        // Sky reflections tuned down so red remains dominant
         depthWrite: true,
         depthTest: true
       });
