@@ -1354,18 +1354,20 @@
       const glassMat = new THREE.MeshPhysicalMaterial({
         color: 0xFF0000,             // Pure Red ("#FF0000", RGB 255, 0, 0)
         emissive: 0xFF0000,          // Keeps the glass reading as true red through sky reflections
-        emissiveIntensity: 0.6,
+        emissiveIntensity: 0.9,
         map: glassTexture,           // Shows crystal depth and panel seams
-        transmission: 0.2,           // Kept low so the bright sky behind doesn't bleach the red to pink
+        emissiveMap: glassTexture,   // Keeps seams/bevels visible in the emissive red too
+        transmission: 0.0,           // Transmission samples the white sky and bleaches the deck pink
         transparent: true,
-        opacity: 0.92,
-        roughness: 0.035,            // Ultra-glossy, pristine crystal surface
-        metalness: 0.06,
-        ior: 1.58,                   // High refractive index for realistic glass optics
-        reflectivity: 0.5,           // Reflections stay visible without washing out the red
-        clearcoat: 1.0,              // High glossy clearcoat
-        clearcoatRoughness: 0.025,
-        envMapIntensity: 0.6,        // Sky reflections tuned down so red remains dominant
+        opacity: 0.88,
+        roughness: 0.05,             // Glossy crystal surface
+        metalness: 0.0,
+        ior: 1.5,
+        specularIntensity: 0.35,     // Fresnel at the low camera angle otherwise mirrors the sky to white
+        specularColor: 0xFF6060,
+        clearcoat: 0.35,             // Gloss kept, but no longer a full white sky mirror
+        clearcoatRoughness: 0.05,
+        envMapIntensity: 0.3,        // Sky reflections subdued so red stays dominant at grazing angles
         depthWrite: true,
         depthTest: true
       });
