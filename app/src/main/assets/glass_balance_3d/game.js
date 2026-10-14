@@ -1353,8 +1353,8 @@
       // Pure Red Glass Platform Material
       const glassMat = new THREE.MeshPhysicalMaterial({
         color: 0xFF0000,             // Pure Red ("#FF0000", RGB 255, 0, 0)
-        emissive: 0x480000,          // Subtle deep red internal glass warmth
-        emissiveIntensity: 0.16,
+        emissive: 0xFF0000,          // Keeps the glass reading as true red through sky reflections
+        emissiveIntensity: 0.35,
         map: glassTexture,           // Shows crystal depth and panel seams
         transmission: 0.52,          // Visibly glass-like with semi-transparency (light visibly passes through)
         transparent: true,
